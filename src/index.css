@@ -1,0 +1,200 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary: #AF101A;
+  --color-primary-container: #D32F2F;
+  --color-surface: #F9F9F9;
+  --color-surface-container-low: #F3F3F3;
+  --color-surface-container-highest: #E2E2E2;
+  --color-on-surface-variant: #5B403D;
+  --color-charcoal: #1A1C1C;
+
+  --font-lexend: "Lexend", sans-serif;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-heading: "Lexend", sans-serif;
+}
+
+:root {
+  --background: #F9F9F9;
+  --foreground: #1A1C1C;
+  --card: #FFFFFF;
+  --card-foreground: #1A1C1C;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1C1C;
+  --primary: #AF101A;
+  --primary-foreground: #FFFFFF;
+  --primary-container: #D32F2F;
+  --secondary: #F3F3F3;
+  --secondary-foreground: #AF101A;
+  --muted: #F3F3F3;
+  --muted-foreground: #5B403D;
+  --accent: #F3F3F3;
+  --accent-foreground: #AF101A;
+  --destructive: #D32F2F;
+  --destructive-foreground: #FFFFFF;
+  --border: #E2E2E2;
+  --input: #E2E2E2;
+  --ring: #AF101A;
+  --radius: 0rem;
+  --primary-gradient: linear-gradient(135deg, #AF101A 0%, #D32F2F 100%);
+}
+
+.dark {
+  --background: #1A1C1C;
+  --foreground: #F9F9F9;
+  --card: #131313;
+  --card-foreground: #F9F9F9;
+  --popover: #131313;
+  --popover-foreground: #F9F9F9;
+  --primary: #AF101A;
+  --primary-foreground: #FFFFFF;
+  --primary-container: #D32F2F;
+  --secondary: #262626;
+  --secondary-foreground: #F9F9F9;
+  --muted: #262626;
+  --muted-foreground: #adaaaa;
+  --accent: #262626;
+  --accent-foreground: #F9F9F9;
+  --destructive: #D32F2F;
+  --destructive-foreground: #FFFFFF;
+  --border: #262626;
+  --input: #262626;
+  --ring: #AF101A;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading uppercase;
+  }
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  @apply backdrop-blur-[12px] bg-background/80;
+}
+
+.glass-heavy {
+  @apply backdrop-blur-[20px] bg-background/70;
+}
+
+/* Kinetic Animations */
+.kinetic-hover {
+  @apply transition-transform duration-300 hover:scale-[1.02];
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer utilities {
+  /* Premium Utilities */
+  .kinetic-hover {
+    @apply transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)];
+  }
+
+  .kinetic-hover:hover {
+    @apply -translate-y-2 grayscale-0 scale-[1.02];
+    box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-heavy {
+    @apply bg-background/80 backdrop-blur-2xl;
+  }
+
+  /* Typography Refinements */
+  .font-black {
+    @apply font-[900];
+    letter-spacing: -0.05em;
+  }
+
+  .italic {
+    font-style: italic;
+    font-weight: 900;
+  }
+}
+
+@layer base {
+  h1, h2, h3, h4 {
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+
+  ::selection {
+    @apply bg-primary text-white;
+  }
+}
+
+/* Mobile UX Guardrails */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch Target Safety */
+button, 
+a.inline-flex,
+.btn {
+  min-height: 44px;
+}
+
+/* Small Device Safeguards (≤360px) */
+@media (max-width: 360px) {
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  section {
+    padding-top: 3rem !important; /* py-12 */
+    padding-bottom: 3rem !important;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 10vw, 2.5rem) !important;
+  }
+
+  .shadow-3xl {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2) !important;
+  }
+}
+
+/* Section Revealer Animation */
+.section-revealer {
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: opacity, transform;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-revealer.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
