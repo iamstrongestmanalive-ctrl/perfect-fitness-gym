@@ -14,7 +14,7 @@ const navLinks = [
   { name: "Memberships", href: "/memberships" },
   { name: "Transformations", href: "/transformations" },
   { name: "Gallery", href: "/gallery" },
-  { name: "Contact", href: "/contact" },
+
   { name: "Reviews", href: "/reviews" },
 ]
 
@@ -42,8 +42,9 @@ export default function Navbar() {
       <nav className="sticky top-0 z-50 w-full glass-heavy border-b border-white/5">
         <div className="container mx-auto px-4 flex h-20 items-center justify-between">
           <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center transition-opacity hover:opacity-90">
-              <span className="text-2xl font-black italic tracking-tighter text-primary">
+            <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
+              <img src="/logo.png" alt="Perfect Fitness Logo" className="h-10 w-auto" />
+              <span className="text-xl lg:text-2xl font-black italic tracking-tighter text-primary">
                 Perfect Fitness Gym
               </span>
             </Link>
@@ -69,12 +70,12 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <Button asChild className="hidden sm:inline-flex bg-primary hover:opacity-90 text-white rounded-none uppercase font-black tracking-widest px-8 h-12 transition-all shadow-lg shadow-primary/20">
-              <Link to="/book">Book Visit</Link>
+              <Link to="/contact">Contact Us</Link>
             </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="icon" 
+
+            <Button
+              variant="ghost"
+              size="icon"
               className="lg:hidden"
               onClick={() => setIsOpen(true)}
             >
@@ -96,7 +97,7 @@ export default function Navbar() {
               className="absolute inset-0 bg-black/40 backdrop-blur-sm pointer-events-auto"
               onClick={() => setIsOpen(false)}
             />
-            
+
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -107,11 +108,11 @@ export default function Navbar() {
               {/* Drawer Header Area */}
               <div className="flex h-20 items-center justify-between px-8 bg-black border-b border-white/10 shrink-0">
                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground">Navigation</span>
-                <Button 
-                   variant="ghost" 
-                   size="icon" 
-                   onClick={() => setIsOpen(false)}
-                   className="text-white hover:bg-white/10 h-10 w-10 rounded-none"
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsOpen(false)}
+                  className="text-white hover:bg-white/10 h-10 w-10 rounded-none"
                 >
                   <X className="h-6 w-6" />
                 </Button>
@@ -141,10 +142,10 @@ export default function Navbar() {
               {/* CTA Area at Bottom */}
               <div className="p-8 pb-12 bg-black border-t border-white/10 mt-auto">
                 <p className="text-[9px] font-bold uppercase tracking-[0.5em] text-muted-foreground/50 mb-6 text-center italic">
-                   Excellence Awaits You
+                  Excellence Awaits You
                 </p>
                 <Button asChild className="w-full bg-primary hover:bg-white hover:text-black text-white rounded-none uppercase font-black tracking-widest py-8 h-auto text-sm transition-all border-2 border-primary">
-                  <Link to="/book" onClick={() => setIsOpen(false)}>Book Your Initial Visit</Link>
+                  <Link to="/contact" onClick={() => setIsOpen(false)}>Book Your Initial Visit</Link>
                 </Button>
               </div>
             </motion.div>

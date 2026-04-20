@@ -59,8 +59,10 @@ export default function Transformations() {
                       <h3 className="text-2xl md:text-5xl font-black uppercase italic tracking-tight text-white leading-tight">{sc.name}</h3>
                       <p className="text-primary font-black uppercase tracking-[0.2em] text-[10px] lg:text-sm">{sc.result} — {sc.duration}</p>
                     </div>
-                    <Button variant="ghost" size="icon" className="text-white hover:text-primary transition-colors active:scale-95">
-                      <Instagram className="h-5 w-5 lg:h-6 lg:w-6" />
+                    <Button asChild variant="ghost" size="icon" className="text-white hover:text-primary transition-colors active:scale-95">
+                      <a href="https://www.instagram.com/perfectfitnesshealth?igsh=MXVuanliYmJlaHA0dw==" target="_blank" rel="noopener noreferrer">
+                        <Instagram className="h-5 w-5 lg:h-6 lg:w-6" />
+                      </a>
                     </Button>
                   </div>
                 </div>

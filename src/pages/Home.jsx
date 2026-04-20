@@ -12,6 +12,13 @@ const variants = {
 }
 
 export default function Home() {
+  const gymImages = [
+    "/assets/gym1.jpg",
+    "/assets/gym2.jpg",
+    "/assets/gym3.jpg",
+    "/assets/gym4.jpg"
+  ]
+
   return (
     <div className="flex flex-col bg-background text-foreground transition-colors duration-300">
       {/* Hero Section */}
@@ -61,7 +68,13 @@ export default function Home() {
             className="flex-1 relative w-full lg:w-auto mt-8 lg:mt-0"
           >
             <div className="relative aspect-[4/5] lg:aspect-[6/7] overflow-hidden shadow-[0_60px_120px_-20px_rgba(0,0,0,0.4)] rounded-none bg-black/5">
-              <img src="/assets/hero_interior.png" alt="Gym Interior" className="w-full h-full object-cover contrast-110" loading="eager" />
+              <img
+                src="/assets/real_gym_floor.png"
+                alt="Perfect Fitness Gym Floor"
+                className="w-full h-full object-cover object-center brightness-[0.88] contrast-[1.08] saturate-[0.9] transition-all duration-700 ease-out"
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-black/15 pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent"></div>
             </div>
             {/* Floating Badge - Centered below on mobile, corner on desktop */}
@@ -84,8 +97,14 @@ export default function Home() {
           >
             <div className="relative max-w-md mx-auto lg:max-w-none">
               <div className="absolute top-8 -left-8 lg:top-12 lg:-left-12 w-full h-full border border-primary/10 -z-10"></div>
-              <div className="overflow-hidden shadow-3xl rounded-none bg-black/5">
-                <img src="/assets/about_reception.png" alt="Perfect Fitness Reception" className="w-full aspect-square object-cover contrast-105" loading="lazy" />
+              <div className="relative overflow-hidden shadow-3xl rounded-none bg-black/5">
+                <img
+                  src="/assets/gym_event_space.png"
+                  alt="Perfect Fitness Events"
+                  className="w-full aspect-square object-cover object-center brightness-[0.88] contrast-[1.06] saturate-[0.92] transition-all duration-700 ease-out"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/12 pointer-events-none" />
               </div>
             </div>
           </motion.div>
@@ -302,17 +321,14 @@ export default function Home() {
             </div>
 
             <div className="flex-1 relative w-full order-2 lg:order-2 mt-10 lg:mt-0">
-              <div className="relative aspect-[4/5] bg-charcoal overflow-hidden group kinetic-hover shadow-3xl rounded-none border-4 lg:border-8 border-white/5">
-                <div className="grid grid-cols-2 h-full">
-                  <div className="relative overflow-hidden group">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop" alt="Before" className="h-full w-full object-cover grayscale brightness-50 transition-transform duration-1000 group-hover:scale-110" loading="lazy" />
-                    <span className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 font-black text-lg lg:text-xl italic tracking-widest text-white/50">BEFORE</span>
-                  </div>
-                  <div className="relative overflow-hidden border-l-2 border-white/10 group">
-                    <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2ec617?q=80&w=2070&auto=format&fit=crop" alt="After" className="h-full w-full object-cover contrast-125 transition-transform duration-1000 group-hover:scale-110" loading="lazy" />
-                    <span className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 font-black text-lg lg:text-xl italic tracking-widest text-primary bg-white px-3 md:px-4 py-1 whitespace-nowrap">AFTER</span>
-                  </div>
-                </div>
+              <div className="relative aspect-[4/5] bg-charcoal overflow-hidden group shadow-3xl rounded-none border-4 lg:border-8 border-white/5">
+                <img 
+                  src="/assets/t1.jpg" 
+                  alt="Member Transformation" 
+                  className="w-full h-full object-cover object-center brightness-[0.95] contrast-[1.1] transition-transform duration-[2000ms] group-hover:scale-105" 
+                  loading="lazy" 
+                />
+                <div className="absolute inset-0 bg-black/5 pointer-events-none transition-opacity duration-500 group-hover:opacity-0" />
               </div>
             </div>
           </div>
@@ -375,15 +391,16 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
-            {[
-              "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=2069&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1623874514711-0f321325f318?q=80&w=2070&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=2069&auto=format&fit=crop"
-            ].map((img, i) => (
-              <div key={i} className="aspect-[4/5] overflow-hidden shadow-2xl group cursor-pointer kinetic-hover rounded-none bg-charcoal">
-                <img src={img} alt={`Gym area ${i + 1}`} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100" loading="lazy" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
+            {gymImages.map((img, i) => (
+              <div key={i} className="relative aspect-[4/5] overflow-hidden shadow-2xl group cursor-pointer rounded-none bg-charcoal hover:[&_img]:grayscale-0 hover:[&_img]:brightness-[1] hover:[&_img]:saturate-[1] hover:[&_img]:scale-105 transition-all duration-700">
+                <img
+                  src={img}
+                  alt={`Gym environment ${i + 1}`}
+                  className="w-full h-full object-cover grayscale brightness-[0.85] contrast-[1.1] transition-all duration-700 ease-out"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/20 pointer-events-none transition-opacity duration-500 group-hover:opacity-10" />
               </div>
             ))}
           </div>

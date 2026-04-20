@@ -34,9 +34,11 @@ export default function Gallery() {
             Experience the intensity of Kanpur's premier training facility. Precision equipment. Masterful coaching.
           </p>
           <div className="flex justify-center pt-4 lg:pt-8 w-full">
-             <Button className="w-full max-w-[260px] bg-primary hover:opacity-90 text-white font-black uppercase text-sm lg:text-lg py-3 lg:py-10 px-10 lg:px-16 rounded-none flex items-center justify-center gap-3 lg:gap-4 transition-all shadow-3xl active:scale-[0.97] active:shadow-inner will-change-transform">
-                <Instagram className="h-4 w-4 lg:h-6 lg:w-6" />
-                Live Feed
+             <Button asChild className="w-full max-w-[260px] bg-primary hover:opacity-90 text-white font-black uppercase text-sm lg:text-lg py-3 lg:py-10 px-10 lg:px-16 rounded-none transition-all shadow-3xl active:scale-[0.97] active:shadow-inner will-change-transform">
+                <a href="https://www.instagram.com/perfectfitnesshealth?igsh=MXVuanliYmJlaHA0dw==" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 lg:gap-4 w-full h-full">
+                  <Instagram className="h-4 w-4 lg:h-6 lg:w-6" />
+                  Live Feed
+                </a>
              </Button>
           </div>
         </div>
@@ -103,8 +105,10 @@ export default function Gallery() {
                <h2 className="text-4xl lg:text-6xl font-black text-white uppercase italic tracking-tight leading-none">Find us <br />in Kanpur</h2>
                <p className="text-white/80 font-bold uppercase tracking-widest text-[10px] lg:text-sm max-w-[30ch] mx-auto">Civil Lines, Kanpur, Uttar Pradesh 208001</p>
             </div>
-            <Button variant="outline" className="w-full max-w-[260px] border-white/40 text-white hover:bg-white hover:text-charcoal font-black uppercase py-3 lg:py-8 px-10 lg:px-12 rounded-none transition-all active:scale-[0.97] active:shadow-inner mx-auto">
-               Get Directions
+            <Button asChild variant="outline" className="w-full max-w-[260px] border-white/40 text-white hover:bg-white hover:text-charcoal font-black uppercase py-3 lg:py-8 px-10 lg:px-12 rounded-none transition-all active:scale-[0.97] active:shadow-inner mx-auto flex items-center justify-center">
+               <a href="https://www.google.com/maps/place/Perfect+Fitness+Gym/@26.4744588,80.3510863,17z/data=!3m1!4b1!4m6!3m5!1s0x399c388f4be88959:0xe1e9a7d468fbf16!8m2!3d26.4744588!4d80.3536612!16s%2Fg%2F11cjj97h8y?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+                 Get Directions
+               </a>
             </Button>
          </div>
       </section>

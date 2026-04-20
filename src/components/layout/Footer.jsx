@@ -10,8 +10,9 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
           {/* Brand & Mission */}
-          <div className="lg:col-span-4 space-y-8">
-            <Link to="/">
+          <div className="lg:col-span-4 space-y-6">
+            <Link to="/" className="inline-block">
+              <img src="/logo.png" alt="Perfect Fitness Logo" className="h-16 w-auto mb-4" />
               <span className="text-3xl font-black italic tracking-tighter text-primary uppercase">
                 Perfect Fitness
               </span>
@@ -21,14 +22,14 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               {[
-                { icon: Instagram, href: "#" },
+                { icon: Instagram, href: "https://www.instagram.com/perfectfitnesshealth?igsh=MXVuanliYmJlaHA0dw==" },
                 { icon: Facebook, href: "#" },
-                { icon: Youtube, href: "#" },
+                { icon: Youtube, href: "https://youtube.com/@mohammadashraf_mrindia?si=id9rl3oSnp6oCYYd" },
                 { icon: Twitter, href: "#" }
               ].map((social, i) => (
-                <Link 
-                  key={i} 
-                  to={social.href} 
+                <Link
+                  key={i}
+                  to={social.href}
                   className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
                 >
                   <social.icon className="h-5 w-5 group-hover:scale-110" />
@@ -65,10 +66,10 @@ export default function Footer() {
             <div className="space-y-6">
               <p className="text-white/60 text-xs font-bold uppercase tracking-widest leading-loose">Subscribe to get training tips, elite updates, and special membership offers.</p>
               <form className="flex flex-col sm:flex-row gap-0 group">
-                <Input 
-                  type="email" 
-                  placeholder="Your Email" 
-                  className="bg-white/5 border-white/10 text-white rounded-none py-8 px-8 focus:border-primary placeholder:text-white/20 font-black uppercase tracking-widest text-[10px] flex-grow peer transition-all focus:bg-white/10" 
+                <Input
+                  type="email"
+                  placeholder="Your Email"
+                  className="bg-white/5 border-white/10 text-white rounded-none py-8 px-8 focus:border-primary placeholder:text-white/20 font-black uppercase tracking-widest text-[10px] flex-grow peer transition-all focus:bg-white/10"
                 />
                 <Button className="bg-primary text-white hover:bg-white hover:text-charcoal font-black uppercase py-8 px-10 rounded-none transition-all text-xs tracking-widest">
                   Subscribe

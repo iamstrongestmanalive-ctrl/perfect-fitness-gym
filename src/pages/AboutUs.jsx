@@ -41,8 +41,14 @@ export default function AboutUs() {
             viewport={{ once: true }}
             className="flex-1 relative w-full max-w-md mx-auto lg:max-w-none"
           >
-            <div className="rounded-none overflow-hidden shadow-3xl kinetic-hover aspect-[4/5] bg-charcoal">
-               <img src="/assets/about_reception.png" alt="Legacy" className="w-full h-full object-cover grayscale-[0.3] contrast-125" loading="eager" />
+            <div className="rounded-none overflow-hidden shadow-3xl aspect-[4/5] bg-charcoal relative group">
+               <img 
+                 src="/assets/trainer_body.png" 
+                 alt="Our Legacy in Iron" 
+                 className="w-full h-full object-cover object-top brightness-[0.85] contrast-[1.1] saturate-[0.9] transition-all duration-700 ease-out md:group-hover:scale-105" 
+                 loading="eager" 
+               />
+               <div className="absolute inset-0 bg-black/20 pointer-events-none" />
             </div>
             {/* Abstract Decor */}
             <div className="absolute -bottom-6 -left-6 lg:-bottom-10 -left-10 w-24 h-24 lg:w-40 lg:h-40 border-b-8 border-l-8 border-primary -z-0 pointer-events-none"></div>
@@ -93,10 +99,18 @@ export default function AboutUs() {
                </p>
             </div>
             <div className="flex-1 relative flex justify-center w-full max-w-sm mx-auto lg:max-w-none">
-               <div className="w-full aspect-square border-4 lg:border-8 border-primary/20 p-4 lg:p-8">
+               <div className="w-full aspect-square border-4 lg:border-8 border-primary/20 p-4 lg:p-8 
+                               transition-all duration-700
+                               md:hover:[&_img]:grayscale-0 md:hover:[&_img]:brightness-[1] md:hover:[&_img]:saturate-[1] md:hover:[&_img]:scale-105
+                               md:hover:[&_.reveal-overlay]:opacity-10">
                   <div className="w-full h-full relative overflow-hidden">
-                     <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop" alt="Mission" className="w-full h-full object-cover contrast-125 grayscale" loading="lazy" />
-                     <div className="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+                     <img 
+                       src="/assets/trainer_room.png" 
+                       alt="Our Training Environment" 
+                       className="w-full h-full object-cover object-center grayscale brightness-[0.75] contrast-[1.1] saturate-[0.85] transition-all duration-700 ease-out" 
+                       loading="lazy" 
+                     />
+                     <div className="reveal-overlay absolute inset-0 bg-black/30 pointer-events-none transition-opacity duration-500" />
                   </div>
                </div>
             </div>

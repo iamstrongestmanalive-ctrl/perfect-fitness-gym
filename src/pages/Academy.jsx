@@ -24,9 +24,9 @@ export default function Academy() {
       <section className="relative min-h-[85vh] flex items-center overflow-hidden pt-16 pb-10 bg-background">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/assets/academy_hero.png" 
-            alt="Academy Background" 
-            className="w-full h-full object-cover grayscale brightness-50 dark:brightness-[0.3] transition-all"
+            src="/assets/academy_ceremony.png" 
+            alt="Academy Ceremony Background" 
+            className="absolute inset-0 w-full h-full object-cover object-right grayscale brightness-[0.7] contrast-[1.05] transition-all"
             loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
@@ -215,14 +215,19 @@ export default function Academy() {
           </div>
 
           <div className="flex-1 relative w-full mt-10 lg:mt-0 max-w-md mx-auto lg:max-w-none">
-             <div className="aspect-[4/5] bg-charcoal overflow-hidden group kinetic-hover shadow-3xl rounded-none relative">
+             <div className="aspect-[4/5] bg-charcoal overflow-hidden group shadow-3xl rounded-none relative">
                 <img 
-                  src="/assets/academy_coach.png" 
-                  alt="Coach in Action" 
-                  className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
+                  src="/assets/trainer_board.png" 
+                  alt="Trainer teaching at whiteboard" 
+                  className="w-full h-full object-cover grayscale md:group-hover:grayscale-0 contrast-[1.1] brightness-[0.8] md:group-hover:brightness-[0.95] transition-all duration-1000 ease-in-out md:group-hover:scale-105 z-0"
                   loading="lazy"
                 />
-                <div className="absolute top-6 right-6 lg:top-10 lg:right-10 bg-primary p-6 lg:p-12 text-white text-center shadow-3xl flex flex-col items-center justify-center space-y-1 lg:space-y-2">
+                {/* Cinematic Overlays */}
+                <div className="absolute inset-0 bg-black/40 z-[1] pointer-events-none transition-opacity duration-700 md:group-hover:opacity-25" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-[2] pointer-events-none" />
+                
+                {/* Badge */}
+                <div className="absolute top-6 right-6 lg:top-10 lg:right-10 bg-primary p-6 lg:p-12 text-white text-center shadow-3xl flex flex-col items-center justify-center space-y-1 lg:space-y-2 z-[10]">
                   <span className="text-4xl lg:text-5xl font-black italic leading-none">100%</span>
                   <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.3em] whitespace-nowrap">Job Placement</p>
                 </div>
