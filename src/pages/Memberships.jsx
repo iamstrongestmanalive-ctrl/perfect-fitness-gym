@@ -1,14 +1,25 @@
 import React from "react"
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
 import { Check, Shield, Zap, Sparkles, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const plans = [
   {
+    name: "Happy Hour",
+    detail: "Value",
+    price: "799",
+    billing: "/month",
+    description: "Get the same facilities at a lower cost during off-peak hours.",
+    timing: "11:00 AM - 4:00 PM",
+    perks: ["Same Premium Equipment", "Off-peak Time Access", "Locker Room Access", "Basic Wellness Check"],
+    featured: false
+  },
+  {
     name: "Monthly",
     detail: "Flexibility",
-    price: "999",
+    price: "1,500",
     billing: "/month",
     description: "Perfect for casual lifters looking for the basics.",
     perks: ["Unlimited Gym Access", "Free General Training", "Locker Room Access", "Basic Wellness Check"],
@@ -65,7 +76,7 @@ export default function Memberships() {
       {/* Pricing Grid */}
       <section className="py-14 lg:py-24 bg-surface-container-low dark:bg-black/20 border-y border-white/[0.06]">
         <div className="container mx-auto px-5">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-1 max-w-7xl mx-auto border border-white/[0.05]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-1 max-w-7xl mx-auto border border-white/[0.05]">
             {plans.map((plan, i) => (
               <motion.div
                 key={i}
@@ -74,7 +85,7 @@ export default function Memberships() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className={cn(
-                  "p-8 lg:p-16 flex flex-col h-full relative transition-all kinetic-hover",
+                  "p-6 lg:p-8 flex flex-col h-full relative transition-all kinetic-hover",
                   plan.featured ? "bg-white text-charcoal lg:scale-y-105 z-10 shadow-3xl" : "bg-white/[0.02] dark:bg-white/5"
                 )}
               >
@@ -92,15 +103,22 @@ export default function Memberships() {
                   
                   <div className="flex flex-col">
                     <div className="flex items-start">
-                      <span className="text-xl lg:text-2xl font-black mt-2">₹</span>
-                      <span className="text-6xl lg:text-8xl font-black tracking-tight leading-none">{plan.price}</span>
+                      <span className="text-xl font-black mt-1.5">₹</span>
+                      <span className="text-5xl lg:text-6xl font-black tracking-tight leading-none">{plan.price}</span>
                     </div>
-                    <span className="text-[10px] lg:text-sm font-bold opacity-60 uppercase tracking-widest mt-2">{plan.billing}</span>
+                    <span className="text-[10px] lg:text-xs font-bold opacity-60 uppercase tracking-widest mt-2">{plan.billing}</span>
                   </div>
                   
-                  <p className="text-xs lg:text-sm font-medium leading-relaxed opacity-80 max-w-[34ch] lg:max-w-none">
-                    {plan.description}
-                  </p>
+                  <div className="space-y-4">
+                    <p className="text-xs lg:text-sm font-medium leading-relaxed opacity-80">
+                      {plan.description}
+                    </p>
+                    {plan.timing && (
+                      <div className="w-full bg-primary/10 text-primary p-3 text-center border-l-2 border-primary font-black uppercase tracking-[0.2em] text-[10px] lg:text-xs">
+                        {plan.timing}
+                      </div>
+                    )}
+                  </div>
                 </div>
                 
                 <div className="space-y-6 lg:space-y-8 flex-grow">
@@ -115,11 +133,11 @@ export default function Memberships() {
                   </ul>
                 </div>
 
-                <Button className={cn(
+                <Button asChild className={cn(
                   "w-full max-w-[260px] mx-auto lg:max-w-none py-3.5 lg:py-10 text-xs lg:text-lg font-black uppercase tracking-widest rounded-none mt-10 lg:mt-16 transition-all active:scale-[0.97] active:shadow-inner will-change-transform",
                   plan.featured ? "bg-charcoal text-white hover:bg-primary shadow-xl" : "bg-primary text-white hover:opacity-90"
                 )}>
-                  Get Started <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5" />
+                  <Link to="/contact">Get Started <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5" /></Link>
                 </Button>
               </motion.div>
             ))}
@@ -155,8 +173,8 @@ export default function Memberships() {
             <h2 className="text-[clamp(2.25rem,8vw,3.5rem)] md:text-7xl font-black uppercase tracking-tight leading-[1.1] italic">Still undecided?</h2>
             <p className="text-sm lg:text-xl font-medium opacity-80 uppercase tracking-widest max-w-[34ch] lg:max-w-none mx-auto lg:mx-0 leading-relaxed">Experience the energy with a free day pass.</p>
           </div>
-          <Button className="w-full max-w-[260px] bg-white text-primary hover:bg-charcoal hover:text-white font-black uppercase py-4 lg:py-10 px-10 lg:px-16 rounded-none text-sm lg:text-xl transition-all shadow-3xl active:scale-[0.97] active:shadow-inner will-change-transform mx-auto lg:mx-0">
-            Book Free Pass
+          <Button asChild className="w-full max-w-[260px] bg-white text-primary hover:bg-charcoal hover:text-white font-black uppercase py-4 lg:py-10 px-10 lg:px-16 rounded-none text-sm lg:text-xl transition-all shadow-3xl active:scale-[0.97] active:shadow-inner will-change-transform mx-auto lg:mx-0">
+            <Link to="/book-visit">Book Free Pass</Link>
           </Button>
         </div>
         <div className="absolute inset-0 bg-charcoal translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>

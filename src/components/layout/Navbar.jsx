@@ -43,10 +43,7 @@ export default function Navbar() {
         <div className="container mx-auto px-4 flex h-20 items-center justify-between">
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
-              <img src="/logo.png" alt="Perfect Fitness Logo" className="h-10 w-auto" />
-              <span className="text-xl lg:text-2xl font-black italic tracking-tighter text-primary">
-                Perfect Fitness Gym
-              </span>
+              <img src="/assets/custom_logo.png" alt="Perfect Fitness Logo" className="h-16 lg:h-20 w-auto py-1" />
             </Link>
 
             <div className="hidden lg:flex gap-6">

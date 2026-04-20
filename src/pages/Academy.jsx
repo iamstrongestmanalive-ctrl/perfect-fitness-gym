@@ -53,11 +53,11 @@ export default function Academy() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-4 w-full justify-center lg:justify-start">
-              <Button className="w-full max-w-[260px] mx-auto lg:mx-0 bg-primary hover:opacity-90 text-white font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all shadow-2xl active:scale-[0.97] active:shadow-inner will-change-transform">
-                Apply Now
+              <Button asChild className="w-full max-w-[260px] mx-auto lg:mx-0 bg-primary hover:opacity-90 text-white font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all shadow-2xl active:scale-[0.97] active:shadow-inner will-change-transform">
+                <Link to="/contact">Apply Now</Link>
               </Button>
-              <Button variant="outline" className="w-full max-w-[260px] mx-auto lg:mx-0 border-white/20 text-foreground hover:bg-foreground hover:text-background font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all active:scale-[0.97] active:shadow-inner will-change-transform">
-                Program Brochure
+              <Button asChild variant="outline" className="w-full max-w-[260px] mx-auto lg:mx-0 border-white/20 text-foreground hover:bg-foreground hover:text-background font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all active:scale-[0.97] active:shadow-inner will-change-transform">
+                <Link to="/contact">Program Brochure</Link>
               </Button>
             </div>
           </motion.div>
@@ -113,9 +113,9 @@ export default function Academy() {
       </section>
 
       {/* Learning Modules Grid */}
-      <section className="py-14 lg:py-48 bg-surface dark:bg-card/30 border-y border-border/10">
+      <section className="py-8 lg:py-48 bg-surface dark:bg-card/30 border-y border-border/10">
         <div className="container mx-auto px-5">
-          <div className="text-center space-y-4 mb-10 lg:mb-32">
+          <div className="text-center space-y-4 mb-8 lg:mb-32">
             <h2 className="text-[clamp(2.25rem,10vw,4rem)] md:text-8xl font-black italic tracking-tight uppercase leading-none">
               What You <br className="lg:hidden" /> Will Learn
             </h2>
@@ -134,9 +134,14 @@ export default function Academy() {
             ].map((module, index) => (
               <div 
                 key={index}
-                className="group p-6 lg:p-14 bg-background border border-border/10 hover:bg-primary hover:text-white transition-all duration-300 flex flex-col justify-between aspect-square active:scale-[0.98] cursor-pointer"
+                className="group p-6 lg:p-14 bg-background border border-border/10 hover:bg-primary hover:text-white transition-all duration-300 flex flex-col justify-between aspect-[4/3] lg:aspect-square active:scale-[0.98] cursor-pointer relative overflow-hidden"
               >
-                <div className="space-y-4 lg:space-y-6">
+                {/* Background Subdued Graphic */}
+                <div className="absolute -bottom-8 -right-8 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 pointer-events-none">
+                  {React.cloneElement(module.icon, { className: 'w-40 h-40 lg:w-64 lg:h-64' })}
+                </div>
+
+                <div className="space-y-4 lg:space-y-6 relative z-10">
                   <div className="flex items-center gap-3">
                     <span className="text-[10px] lg:text-xs font-black tracking-widest text-primary group-hover:text-white/60 transition-colors">{module.id}</span>
                   </div>
@@ -307,11 +312,11 @@ export default function Academy() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 lg:gap-8 justify-center w-full max-w-[260px] sm:max-w-3xl mx-auto">
-             <Button className="w-full bg-white text-primary hover:bg-white/90 font-black uppercase py-3 lg:py-10 px-10 lg:px-14 rounded-none text-sm lg:text-xl transition-all shadow-2xl active:scale-[0.97] active:shadow-inner">
-                Apply Now
+             <Button asChild className="w-full bg-white text-primary hover:bg-white/90 font-black uppercase py-3 lg:py-10 px-10 lg:px-14 rounded-none text-sm lg:text-xl transition-all shadow-2xl active:scale-[0.97] active:shadow-inner">
+                <Link to="/contact">Apply Now</Link>
              </Button>
-             <Button variant="outline" className="w-full border-white/40 text-white hover:bg-white hover:text-primary font-black uppercase py-3 lg:py-10 px-10 lg:px-14 rounded-none text-sm lg:text-xl transition-all border-2 active:scale-[0.97] active:shadow-inner">
-                Talk To Our Team
+             <Button asChild variant="outline" className="w-full border-white/40 text-white hover:bg-white hover:text-primary font-black uppercase py-3 lg:py-10 px-10 lg:px-14 rounded-none text-sm lg:text-xl transition-all border-2 active:scale-[0.97] active:shadow-inner">
+                <Link to="/contact">Talk To Our Team</Link>
              </Button>
           </div>
         </div>

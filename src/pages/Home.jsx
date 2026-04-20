@@ -51,11 +51,11 @@ export default function Home() {
               Premium strength training facility in the heart of Kanpur. High-performance equipment, elite coaching, and fitness enthusiasts who demand excellence.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-6 pt-4 justify-center lg:justify-start w-full">
-              <Button className="w-full max-w-[260px] mx-auto lg:mx-0 bg-primary hover:opacity-90 text-white font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all active:scale-[0.97] active:shadow-inner shadow-3xl group">
-                Join The Elite
+              <Button asChild className="w-full max-w-[260px] mx-auto lg:mx-0 bg-primary hover:opacity-90 text-white font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all active:scale-[0.97] active:shadow-inner shadow-3xl group">
+                <Link to="/contact">Join The Elite</Link>
               </Button>
-              <Button variant="outline" className="w-full max-w-[260px] mx-auto lg:mx-0 border-border text-foreground hover:bg-primary hover:text-white hover:border-primary font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all active:scale-[0.97] active:shadow-inner">
-                View Plans
+              <Button asChild variant="outline" className="w-full max-w-[260px] mx-auto lg:mx-0 border-border text-foreground hover:bg-primary hover:text-white hover:border-primary font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all active:scale-[0.97] active:shadow-inner">
+                <Link to="/memberships">View Plans</Link>
               </Button>
             </div>
           </motion.div>
@@ -244,14 +244,15 @@ export default function Home() {
             <h2 className="text-[clamp(2rem,10vw,4.5rem)] md:text-6xl lg:text-9xl font-black leading-none tracking-tight uppercase italic">Access The <br />Arena</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-1">
             {[
+              { name: "Happy Hour", timing: "11:00 AM - 4:00 PM", price: "999", perks: ["Access All Equipment", "Off-peak Hours Access", "Same Facilities", "Lower Cost"] },
               { name: "Standard", price: "1,500", perks: ["Access All Equipment", "Changing Room Access", "Standard Hours", "Locker Facility"] },
               { name: "Premium", price: "3,000", perks: ["Hammer Strength Access", "Matrix Cardio Suite", "Free Training Session", "Priority Support", "Diet Consultation"], featured: true },
               { name: "Elite", price: "5,500", perks: ["Personal Trainer (3x/week)", "Advanced Body Metrics", "Unlimited Recovery Access", "Exclusive Elite Kit", "Guest Passes"] }
             ].map((plan, i) => (
               <div key={i} className={cn(
-                "p-6 lg:p-16 flex flex-col transition-all duration-500 rounded-none relative group h-full",
+                "p-6 lg:p-8 flex flex-col transition-all duration-500 rounded-none relative group h-full",
                 plan.featured
                   ? "bg-primary text-white lg:scale-105 z-20 shadow-4xl focus:z-30"
                   : "bg-surface dark:bg-white/5 border border-border/10 text-foreground"
@@ -264,8 +265,13 @@ export default function Home() {
                 <div className="space-y-6 lg:space-y-12 mb-10 lg:mb-16 flex-grow">
                   <div className="space-y-4 lg:space-y-6">
                     <h3 className="text-xl lg:text-3xl font-black uppercase italic tracking-tighter leading-snug">{plan.name}</h3>
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-4xl lg:text-6xl font-black">₹{plan.price}</span>
+                    {plan.timing && (
+                      <div className="bg-primary/10 text-primary p-2 border-l-2 border-primary font-black uppercase tracking-[0.15em] text-[9px] lg:text-[10px] w-max">
+                        {plan.timing}
+                      </div>
+                    )}
+                    <div className="flex items-baseline gap-2 pt-2">
+                      <span className="text-4xl lg:text-5xl font-black">₹{plan.price}</span>
                       <span className={cn("text-[10px] lg:text-[11px] uppercase font-bold tracking-[0.2em] opacity-60", plan.featured ? "text-white" : "text-primary")}>/Month</span>
                     </div>
                   </div>
@@ -277,13 +283,13 @@ export default function Home() {
                     ))}
                   </ul>
                 </div>
-                <Button className={cn(
+                <Button asChild className={cn(
                   "w-full max-w-[260px] mx-auto lg:mx-0 rounded-none font-black uppercase py-3 lg:py-8 text-sm lg:text-base tracking-[0.2em] transition-all border-2 mt-auto active:scale-[0.97] active:shadow-inner will-change-transform",
                   plan.featured
                     ? "bg-white text-primary border-white hover:bg-transparent hover:text-white"
                     : "bg-primary text-white border-primary hover:bg-white hover:text-primary"
                 )}>
-                  Select Plan
+                  <Link to="/contact">Select Plan</Link>
                 </Button>
               </div>
             ))}

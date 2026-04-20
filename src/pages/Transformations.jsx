@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const showcases = [
-  { name: "Aman R.", result: "Lost 15kg", duration: "12 Weeks", img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop" },
-  { name: "Siddharth P.", result: "Bulked 8kg", duration: "16 Weeks", img: "https://images.unsplash.com/photo-1583454110551-21f2fa2ec617?q=80&w=2070&auto=format&fit=crop" },
-  { name: "Ria S.", result: "Body Recomp", duration: "24 Weeks", img: "https://images.unsplash.com/photo-1548690312-e3b507d17a12?q=80&w=1974&auto=format&fit=crop" },
-  { name: "Kabir M.", result: "Lost 22kg", duration: "20 Weeks", img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop" },
+  { result: "Lost 15kg", duration: "12 Weeks", img: "/assets/trans1.jpg" },
+  { result: "Mass Gained 18kg", duration: "32 Weeks", img: "/assets/trans2.jpg" },
+  { result: "Body Recomposition", duration: "24 Weeks", img: "/assets/trans3.jpg" },
+  { result: "Lost 28kg", duration: "20 Weeks", img: "/assets/trans4.jpg" },
 ]
 
 export default function Transformations() {
@@ -50,25 +50,8 @@ export default function Transformations() {
                 transition={{ delay: i * 0.1 }}
                 className="group relative overflow-hidden bg-charcoal aspect-[3/4] lg:aspect-square"
               >
-                <img src={sc.img} alt={sc.name} className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity"></div>
-                
-                <div className="absolute bottom-6 lg:bottom-12 left-6 lg:left-12 right-6 lg:right-12 space-y-4">
-                  <div className="flex justify-between items-end">
-                    <div className="space-y-1 lg:space-y-2">
-                      <h3 className="text-2xl md:text-5xl font-black uppercase italic tracking-tight text-white leading-tight">{sc.name}</h3>
-                      <p className="text-primary font-black uppercase tracking-[0.2em] text-[10px] lg:text-sm">{sc.result} — {sc.duration}</p>
-                    </div>
-                    <Button asChild variant="ghost" size="icon" className="text-white hover:text-primary transition-colors active:scale-95">
-                      <a href="https://www.instagram.com/perfectfitnesshealth?igsh=MXVuanliYmJlaHA0dw==" target="_blank" rel="noopener noreferrer">
-                        <Instagram className="h-5 w-5 lg:h-6 lg:w-6" />
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-                
-                {/* Asymmetric Accent */}
-                <div className="absolute top-0 right-0 w-16 lg:w-24 h-1 bg-primary group-hover:w-full transition-all duration-700"></div>
+                <img src={sc.img} alt={sc.result} className="w-full h-full object-cover brightness-95 group-hover:scale-105 transition-all duration-1000" loading="lazy" />
+                <div className="absolute inset-0 bg-black/5 pointer-events-none group-hover:bg-transparent transition-colors duration-500" />
               </motion.div>
             ))}
           </div>

@@ -46,11 +46,11 @@ export default function Alumni() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-4 w-full justify-center lg:justify-start">
-              <Button className="w-full max-w-[260px] mx-auto lg:mx-0 bg-primary hover:opacity-90 text-white font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all shadow-2xl active:scale-[0.97] active:shadow-inner will-change-transform">
-                Explore Careers
+              <Button asChild className="w-full max-w-[260px] mx-auto lg:mx-0 bg-primary hover:opacity-90 text-white font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all shadow-2xl active:scale-[0.97] active:shadow-inner will-change-transform">
+                <Link to="/academy">Explore Careers</Link>
               </Button>
-              <Button variant="outline" className="w-full max-w-[260px] mx-auto lg:mx-0 border-white/20 text-foreground hover:bg-foreground hover:text-background font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all active:scale-[0.97] active:shadow-inner will-change-transform">
-                Join The Ranks
+              <Button asChild variant="outline" className="w-full max-w-[260px] mx-auto lg:mx-0 border-white/20 text-foreground hover:bg-foreground hover:text-background font-black uppercase py-3 lg:py-8 px-10 lg:px-16 rounded-none text-sm lg:text-lg transition-all active:scale-[0.97] active:shadow-inner will-change-transform">
+                <Link to="/contact">Join The Ranks</Link>
               </Button>
             </div>
           </motion.div>
@@ -251,11 +251,11 @@ export default function Alumni() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center w-full max-w-[260px] sm:max-w-3xl mx-auto">
-             <Button className="w-full bg-white text-primary hover:bg-white/90 font-black uppercase py-3 lg:py-10 px-10 lg:px-14 rounded-none text-sm lg:text-xl transition-all shadow-2xl active:scale-[0.97] active:shadow-inner">
-                Join The Academy
+             <Button asChild className="w-full bg-white text-primary hover:bg-white/90 font-black uppercase py-3 lg:py-10 px-10 lg:px-14 rounded-none text-sm lg:text-xl transition-all shadow-2xl active:scale-[0.97] active:shadow-inner">
+                <Link to="/academy">Join The Academy</Link>
              </Button>
-             <Button variant="outline" className="w-full border-white/40 text-white hover:bg-white hover:text-primary font-black uppercase py-3 lg:py-10 px-10 lg:px-14 rounded-none text-sm lg:text-xl transition-all border-2 active:scale-[0.97] active:shadow-inner">
-                Talk To A Mentor
+             <Button asChild variant="outline" className="w-full border-white/40 text-white hover:bg-white hover:text-primary font-black uppercase py-3 lg:py-10 px-10 lg:px-14 rounded-none text-sm lg:text-xl transition-all border-2 active:scale-[0.97] active:shadow-inner">
+                <Link to="/contact">Talk To A Mentor</Link>
              </Button>
           </div>
         </div>

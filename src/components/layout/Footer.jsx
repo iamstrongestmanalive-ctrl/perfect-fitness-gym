@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Brand & Mission */}
           <div className="lg:col-span-4 space-y-6">
             <Link to="/" className="inline-block">
-              <img src="/logo.png" alt="Perfect Fitness Logo" className="h-16 w-auto mb-4" />
+              <img src="/assets/custom_logo.png" alt="Perfect Fitness Logo" className="h-16 lg:h-24 w-auto mb-4" />
               <span className="text-3xl font-black italic tracking-tighter text-primary uppercase">
                 Perfect Fitness
               </span>

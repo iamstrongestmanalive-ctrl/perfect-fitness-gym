@@ -1,12 +1,78 @@
-import React from "react"
-import { motion } from "framer-motion"
-import { Phone, Mail, MapPin, Clock, ArrowRight, MessageCircle, Navigation } from "lucide-react"
+import React, { useState, useRef, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Phone, Mail, MapPin, Clock, ArrowRight, MessageCircle, Navigation, ChevronDown } from "lucide-react"
 import { Facebook, Instagram, Youtube } from "@/components/ui/icons"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    branch: "",
+    message: ""
+  })
+  const [error, setError] = useState("")
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const dropdownRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  const branchWhatsAppMap = {
+    "Civil Lines": "919807490497",
+    "Ambedkar Nagar": "919839578983"
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+    if (error) setError("")
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+    // Validation
+    if (!formData.name || !formData.phone || !formData.branch || !formData.message) {
+      setError("Please fill in all required fields (Name, Phone, Branch, Message).")
+      return
+    }
+
+    const targetNumber = branchWhatsAppMap[formData.branch]
+    if (!targetNumber) {
+      setError("Invalid branch selected.")
+      return
+    }
+
+    // Format Message
+    const textMsg = `Hello Perfect Fitness,
+
+I want to contact the ${formData.branch} branch.
+
+Name: ${formData.name}
+Phone: ${formData.phone}
+Email: ${formData.email || "N/A"}
+Branch: ${formData.branch}
+Message: ${formData.message}
+
+Please contact me back.`
+
+    const encodedMsg = encodeURIComponent(textMsg)
+    const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodedMsg}`
+    
+    window.open(whatsappUrl, "_blank")
+  }
+
   const branches = [
     {
       name: "Civil Lines",
@@ -132,31 +198,90 @@ export default function Contact() {
                   <p className="text-muted-foreground dark:text-white/60 text-sm lg:text-base font-medium">Have questions? Fill out the form and our team will get back to you within 24 hours.</p>
                 </div>
 
-                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <Input placeholder="Full Name" className="bg-surface dark:bg-white/[0.03] border-none py-7 px-6 text-sm italic font-bold focus:ring-1 ring-primary/20 transition-all" />
-                    <Input placeholder="Email Address" className="bg-surface dark:bg-white/[0.03] border-none py-7 px-6 text-sm italic font-bold focus:ring-1 ring-primary/20 transition-all" />
-                  </div>
-                  <Input placeholder="Phone Number" className="bg-surface dark:bg-white/[0.03] border-none py-7 px-6 text-sm italic font-bold focus:ring-1 ring-primary/20 transition-all" />
-
-                  <div className="relative">
-                    <select className="w-full bg-surface dark:bg-white/[0.03] border-none py-4 px-6 text-sm italic font-bold appearance-none cursor-pointer focus:outline-none focus:ring-1 ring-primary/20 rounded-md transition-all">
-                      <option value="" disabled selected>Interested Branch</option>
-                      <option>Civil Lines</option>
-                      <option>Ambedkar Nagar</option>
-                    </select>
-                    <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
-                      <Clock className="w-4 h-4" />
+                <form className="space-y-6" onSubmit={handleSubmit}>
+                  {error && (
+                    <div className="bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-bold p-4 rounded-md">
+                      {error}
                     </div>
+                  )}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <Input 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Full Name *" 
+                      className="bg-surface dark:bg-white/[0.03] border-none py-7 px-6 text-sm italic font-bold focus:ring-1 ring-primary/20 transition-all" 
+                    />
+                    <Input 
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="Email Address" 
+                      className="bg-surface dark:bg-white/[0.03] border-none py-7 px-6 text-sm italic font-bold focus:ring-1 ring-primary/20 transition-all" 
+                    />
+                  </div>
+                  <Input 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Phone Number *" 
+                    className="bg-surface dark:bg-white/[0.03] border-none py-7 px-6 text-sm italic font-bold focus:ring-1 ring-primary/20 transition-all" 
+                  />
+
+                  <div className="relative" ref={dropdownRef}>
+                    <div 
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      className={cn(
+                        "w-full bg-surface dark:bg-white/[0.03] border-none py-7 px-6 text-sm italic font-bold cursor-pointer focus:outline-none focus:ring-1 ring-primary/20 rounded-md transition-all flex justify-between items-center",
+                        !formData.branch ? "text-muted-foreground dark:text-white/50" : "text-foreground dark:text-white"
+                      )}
+                    >
+                      <span className={formData.branch ? "" : "opacity-60"}>{formData.branch || "Interested Branch *"}</span>
+                      <ChevronDown className={cn("w-4 h-4 transition-transform duration-300 opacity-60", isDropdownOpen && "rotate-180")} />
+                    </div>
+                    
+                    <AnimatePresence>
+                      {isDropdownOpen && (
+                        <motion.div 
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute z-50 w-full mt-2 bg-white dark:bg-[#121212] border border-black/10 dark:border-white/10 rounded-md shadow-2xl overflow-hidden py-2"
+                        >
+                          <div 
+                            onClick={() => {
+                              handleInputChange({ target: { name: 'branch', value: 'Civil Lines' } })
+                              setIsDropdownOpen(false)
+                            }}
+                            className="px-6 py-4 text-sm font-bold italic text-charcoal/80 dark:text-white/80 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer transition-colors"
+                          >
+                            Civil Lines
+                          </div>
+                          <div 
+                            onClick={() => {
+                              handleInputChange({ target: { name: 'branch', value: 'Ambedkar Nagar' } })
+                              setIsDropdownOpen(false)
+                            }}
+                            className="px-6 py-4 text-sm font-bold italic text-charcoal/80 dark:text-white/80 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer transition-colors"
+                          >
+                            Ambedkar Nagar
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
 
                   <textarea
-                    placeholder="Your Message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Your Message *"
                     rows={4}
                     className="w-full bg-surface dark:bg-white/[0.03] border-none p-6 text-sm italic font-bold focus:outline-none focus:ring-1 ring-primary/20 rounded-md transition-all resize-none"
                   />
 
-                  <Button className="w-full bg-primary hover:bg-black text-white hover:text-white transition-all py-8 mt-4 text-xs lg:text-sm uppercase tracking-[0.2em] font-black rounded-lg shadow-xl shadow-primary/20">
+                  <Button type="submit" className="w-full bg-primary hover:bg-black text-white hover:text-white transition-all py-8 mt-4 text-xs lg:text-sm uppercase tracking-[0.2em] font-black rounded-lg shadow-xl shadow-primary/20">
                     Submit Request
                   </Button>
                 </form>
@@ -173,7 +298,7 @@ export default function Contact() {
                 className="bg-charcoal p-8 lg:p-12 shadow-2xl rounded-2xl text-white relative overflow-hidden h-full flex flex-col"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16" />
-                <img src="/logo.png" alt="Perfect Fitness Logo" className="absolute top-8 right-8 h-8 w-auto opacity-40 group-hover:opacity-100 transition-opacity" />
+                <img src="/assets/custom_logo.png" alt="Perfect Fitness Logo" className="absolute top-8 right-8 h-12 lg:h-16 w-auto opacity-40 group-hover:opacity-100 transition-opacity" />
 
                 <p className="text-[10px] font-black uppercase text-primary tracking-[0.5em] mb-10">Global Connectivity</p>
 
