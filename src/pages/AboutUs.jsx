@@ -175,6 +175,124 @@ export default function AboutUs() {
          </div>
       </section>
 
+      {/* Premium Trainer Profiles Section */}
+      <section className="py-20 lg:py-32 bg-[#0E0E0E] relative overflow-hidden">
+         <div className="container mx-auto px-5">
+            <div className="text-left mb-16 lg:mb-24 relative z-10">
+               <h2 className="text-[clamp(2.5rem,10vw,4.5rem)] md:text-8xl font-black uppercase tracking-tight italic leading-none text-white">
+                  Meet Our <br className="hidden md:block" /><span className="text-primary">Coaches</span>
+               </h2>
+               <div className="w-24 h-1 lg:h-2 bg-primary mt-6 mb-4"></div>
+               <p className="text-white/60 uppercase tracking-[0.4em] font-black text-[10px] lg:text-xs">
+                  Elite coaching. Proven results. Real transformations.
+               </p>
+            </div>
+
+            <div className="space-y-16 lg:space-y-24">
+               {[
+                  {
+                     id: 1,
+                     name: "Vikram Singh",
+                     role: "Head Coach / Founder",
+                     experience: "15+ Years Experience",
+                     bio: "With over 15 years in the trenches, Vikram has built Perfect Fitness from the ground up. He specializes in absolute strength protocols and extreme body recomposition.",
+                     specialties: ["Absolute Strength", "Body Recomposition", "Contest Prep"],
+                     image: "/assets/trainer_1.jpg"
+                  },
+                  {
+                     id: 2,
+                     name: "Rahul Sharma",
+                     role: "Strength & Conditioning",
+                     experience: "8+ Years Experience",
+                     bio: "Rahul blends high-octane athletic conditioning with strict biomechanics. Having trained numerous state-level competitors, he drives peak athletic performance.",
+                     specialties: ["Athletic Performance", "Explosive Power", "Injury Prevention"],
+                     image: "/assets/trainer_2.jpg"
+                  },
+                  {
+                     id: 3,
+                     name: "Amit Patel",
+                     role: "Transformation Specialist",
+                     experience: "10+ Years Experience",
+                     bio: "With over 1,000 successful transformations under his belt, Amit leverages science-backed nutrition and precise hypertrophy protocols to melt fat and build dense muscle.",
+                     specialties: ["Fat Loss", "Hypertrophy", "Nutrition Programming"],
+                     image: "/assets/trainer_3.jpg"
+                  },
+                  {
+                     id: 4,
+                     name: "Surya Dev",
+                     role: "Performance Expert",
+                     experience: "7+ Years Experience",
+                     bio: "As a competitive powerlifter, Surya demands flawless execution. He builds foundational, undeniable strength through advanced powerlifting and mobility techniques.",
+                     specialties: ["Powerlifting", "Mobility Mechanics", "Foundational Strength"],
+                     image: "/assets/trainer_4.jpg"
+                  }
+               ].map((trainer, index) => {
+                  const isReverse = index % 2 !== 0;
+                  
+                  return (
+                     <motion.div 
+                        key={trainer.id}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className={`flex flex-col ${isReverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} bg-[#111] rounded-[24px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] lg:min-h-[600px] border border-white/[0.05]`}
+                     >
+                        {/* Image Side (50%) */}
+                        <div className="lg:w-[50%] relative h-[450px] lg:h-auto overflow-hidden group">
+                           <img 
+                              src={trainer.image} 
+                              alt={trainer.name} 
+                              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.03] grayscale-[0.2]"
+                              loading="lazy"
+                           />
+                           <div className={`absolute inset-0 ${isReverse ? 'bg-gradient-to-t lg:bg-gradient-to-l' : 'bg-gradient-to-t lg:bg-gradient-to-r'} from-[#111] via-transparent to-[#111]/30 opacity-100 lg:opacity-100`} />
+                        </div>
+
+                        {/* Content Side (50%) */}
+                        <div className={`lg:w-[50%] p-8 md:p-12 lg:p-16 flex flex-col justify-center relative z-10 bg-[#111] lg:bg-transparent -mt-10 lg:mt-0 ${isReverse ? 'lg:pr-24 lg:pl-16' : 'lg:pl-24 lg:pr-16'}`}>
+                           <span className="inline-block text-primary font-black uppercase tracking-[0.3em] text-[9px] mb-4">
+                              {index === 0 ? "Featured Coach" : "Elite Profile"}
+                           </span>
+                           <h3 className="text-4xl lg:text-5xl font-black text-white uppercase italic tracking-tight mb-2">
+                              {trainer.name}
+                           </h3>
+                           <h4 className="text-white/80 font-bold uppercase tracking-widest text-xs lg:text-sm mb-6 border-l-2 border-primary pl-3">
+                              {trainer.role}
+                           </h4>
+                           
+                           <p className="text-white/60 text-sm lg:text-base leading-relaxed mb-10">
+                              {trainer.bio}
+                           </p>
+
+                           <div className="space-y-5 mb-12">
+                              <div className="flex items-center gap-4">
+                                 <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                                 <span className="text-white/80 text-[10px] lg:text-xs uppercase tracking-widest font-bold">
+                                    {trainer.experience}
+                                 </span>
+                              </div>
+                              {trainer.specialties.map((spec, i) => (
+                                 <div key={i} className="flex items-center gap-4">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0 shadow-[0_0_10px_rgba(229,9,20,0.8)]" />
+                                    <span className="text-white/80 text-[10px] lg:text-xs uppercase tracking-widest font-bold">
+                                       {spec}
+                                    </span>
+                                 </div>
+                              ))}
+                           </div>
+
+                           <button className="bg-primary hover:bg-white hover:text-charcoal text-white font-black uppercase tracking-widest text-xs lg:text-sm py-4 px-8 transition-colors w-fit italic">
+                              Train With Me
+                           </button>
+                        </div>
+                     </motion.div>
+                  );
+               })}
+            </div>
+         </div>
+      </section>
+
       {/* The Perfect Code */}
       <section className="py-14 lg:py-32 bg-surface-container-low dark:bg-black/20 border-t border-white/[0.06]">
          <div className="container mx-auto px-5">
